@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes · Shiff &amp; Castro · Derecho Reproductivo</title>
+  <meta name="description" content="Respuestas sobre costos, confidencialidad, la Ley 26.862, amparos de fertilidad y derechos reproductivos. Todo lo que necesitás saber antes de consultar.">
+
+  <!-- Google Fonts — identical to index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — BRAND IDENTITY (identical to index)
+    ============================================================ */
+    :root {
+      --rose:        #C1847A;
+      --rose-light:  #E8C5BF;
+      --rose-pale:   #F5EAE7;
+      --rose-deep:   #8B5C54;
+      --cream:       #FAF7F2;
+      --cream-dark:  #F0EAE0;
+      --sage:        #8B9E8A;
+      --sage-light:  #C4D0C3;
+      --terracotta:  #B86B55;
+      --sand:        #D4C5B0;
+      --dark:        #2A1F1C;
+      --text-muted:  #8A7A74;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --radius-card: 22px;
+      --radius-btn:  100px;
+
+      --shadow-rose:       0 12px 32px rgba(193,132,122,0.22);
+      --shadow-rose-hover: 0 20px 48px rgba(193,132,122,0.32);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.042;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--font-body); }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      display: block;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.9rem 2rem;
+      background: var(--rose);
+      color: #fff;
+      border-radius: var(--radius-btn);
+      font-weight: 500;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      transition: background 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: var(--rose-deep);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-rose);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.72s ease, transform 0.72s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       NAVIGATION — IDENTICAL TO INDEX.HTML
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.35rem 0;
+      transition: padding 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+    }
+    .nav.scrolled {
+      background: rgba(250,247,242,0.93);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 0.85rem 0;
+      box-shadow: 0 1px 0 rgba(193,132,122,0.14);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--rose-deep);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.84rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.03em;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--rose);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--rose-deep); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active-link { color: var(--rose-deep); }
+    .nav-links a.active-link::after { width: 100%; }
+
+    .nav-cta {
+      padding: 0.55rem 1.4rem;
+      background: var(--rose);
+      color: #fff !important;
+      border-radius: var(--radius-btn);
+      font-weight: 500 !important;
+      font-size: 0.82rem !important;
+      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+    .nav-cta:hover { background: var(--rose-deep) !important; transform: translateY(-1px) !important; }
+    .nav-cta::after { display: none !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      z-index: 1100;
+      position: relative;
+      min-width: 44px; min-height: 44px;
+      align-items: center; justify-content: center;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform 0.32s ease, opacity 0.32s ease, background 0.3s ease;
+    }
+    .hamburger.open span { background: rgba(232,197,191,0.9); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(42,31,28,0.97);
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.38s ease;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--cream);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
+    }
+    .mobile-menu.open a:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.04s; }
+    .mobile-menu.open a:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.09s; }
+    .mobile-menu.open a:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.14s; }
+    .mobile-menu.open a:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.19s; }
+    .mobile-menu.open a:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.24s; }
+    .mobile-menu a:hover { color: var(--rose-light); }
+    .mobile-wa-btn {
+      margin-top: 0.5rem;
+      padding: 0.85rem 2.25rem;
+      background: var(--rose);
+      color: #fff;
+      border-radius: var(--radius-btn);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.92rem;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.4s ease 0.32s, transform 0.4s ease 0.32s, background 0.2s ease;
+      text-decoration: none;
+    }
+    .mobile-menu.open .mobile-wa-btn { opacity: 1; transform: translateY(0); }
+    .mobile-wa-btn:hover { background: var(--rose-deep); }
+
+    /* ============================================================
+       FAQs HERO / PAGE HEADER
+    ============================================================ */
+    .faqs-hero {
+      background: var(--cream);
+      padding: 11rem 0 5.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle background blob */
+    .faqs-hero::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: var(--rose-light);
+      filter: blur(100px);
+      opacity: 0.28;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .faqs-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.12;
+      margin-top: 1rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .faqs-hero h1 em { font-style: italic; color: var(--rose); }
+
+    .faqs-hero-sub {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.82;
+      position: relative;
+    }
+
+    /* ============================================================
+       FAQ CONTENT AREA
+    ============================================================ */
+    .faqs-body {
+      padding: 0 0 8rem;
+      background: var(--cream);
+    }
+
+    .faqs-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* Sticky sidebar with category links */
+    .faqs-sidebar {
+      position: sticky;
+      top: 6rem;
+    }
+    .faqs-sidebar h3 {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+    .faqs-sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .faqs-sidebar a {
+      display: block;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .faqs-sidebar a:hover,
+    .faqs-sidebar a.active {
+      color: var(--rose-deep);
+      background: var(--rose-pale);
+      border-left-color: var(--rose);
+    }
+
+    /* FAQ categories and items */
+    .faqs-main { display: flex; flex-direction: column; gap: 3.5rem; }
+
+    .faq-category {}
+    .faq-category-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .faq-category-title em { font-style: italic; color: var(--rose); }
+
+    /* Accordion items */
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--cream-dark);
+      border-radius: 14px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .faq-item.active {
+      border-color: var(--rose-light);
+      border-left: 3px solid var(--rose);
+      background: var(--rose-pale);
+      box-shadow: 0 4px 20px rgba(193,132,122,0.1);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      padding: 1.2rem 1.5rem;
+      text-align: left;
+      cursor: pointer;
+      background: none;
+      min-height: 44px;
+    }
+    .faq-question-text {
+      font-family: var(--font-body);
+      font-size: 0.96rem;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--rose-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      color: var(--rose);
+      font-weight: 300;
+      line-height: 1;
+      transition: transform 0.32s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      background: var(--rose);
+      border-color: var(--rose);
+      color: #fff;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.42s ease, opacity 0.38s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 1.5rem 1.4rem;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+    .faq-answer-inner strong {
+      color: var(--rose-deep);
+      font-weight: 500;
+    }
+    .faq-answer-inner a {
+      color: var(--rose);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* CTA block */
+    .faqs-cta {
+      margin-top: 4rem;
+      padding: 3rem;
+      background: var(--dark);
+      border-radius: var(--radius-card);
+      text-align: center;
+    }
+    .faqs-cta h3 {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .faqs-cta h3 em { font-style: italic; color: var(--rose-light); }
+    .faqs-cta p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.45);
+      max-width: 400px;
+      margin: 0 auto 2rem;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       FOOTER — IDENTICAL TO INDEX.HTML
+    ============================================================ */
+    .footer {
+      background: var(--dark);
+      padding: 4.5rem 0 2.5rem;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--rose-light);
+      margin-bottom: 0.3rem;
+    }
+    .footer-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.85rem;
+      text-transform: uppercase;
+    }
+    .footer-tagline {
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.75;
+      max-width: 250px;
+    }
+    .footer-hashtag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.12rem;
+      color: var(--rose);
+    }
+    .footer-col h4 {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 1.3rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-col a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: var(--rose-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy { font-size: 0.76rem; color: rgba(255,255,255,0.22); }
+    .footer-social { display: flex; gap: 1.25rem; }
+    .footer-social a { font-size: 0.78rem; color: rgba(255,255,255,0.32); transition: color 0.2s ease; }
+    .footer-social a:hover { color: var(--rose-light); }
+
+    /* ============================================================
+       WHATSAPP FLOTANTE — IDENTICAL
+    ============================================================ */
+    .wa-float {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 900;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 22px rgba(37,211,102,0.42);
+      transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.38s ease;
+    }
+    .wa-float:hover { transform: scale(1.14); box-shadow: 0 6px 32px rgba(37,211,102,0.58); }
+    .wa-float svg { width: 29px; height: 29px; fill: #fff; }
+    .wa-float::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,0.38);
+      animation: waPulse 2.2s ease-out infinite;
+    }
+    @keyframes waPulse {
+      0%   { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.55); opacity: 0; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger {
+        display: flex;
+        position: fixed;
+        top: 1.1rem;
+        right: 1.25rem;
+        z-index: 1200;
+      }
+      .mobile-menu a { font-size: 1.75rem; }
+      .mobile-menu { gap: 1.1rem; }
+      .faqs-layout { grid-template-columns: 1fr; }
+      .faqs-sidebar { position: static; }
+      .faqs-sidebar ul { flex-direction: row; flex-wrap: wrap; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 640px) {
+      .container { padding: 0 1.25rem; }
+      .faqs-cta { padding: 2rem 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.85rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION — IDENTICAL TO INDEX.HTML
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        El Club de las Soñadoras
+        <small>Shiff &amp; Castro · Derecho Reproductivo</small>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#nosotras">Nosotras</a></li>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="index.html#historias">Historias</a></li>
+        <li><a href="faqs.html" class="active-link">FAQs</a></li>
+        <li><a href="index.html#contacto">Contacto</a></li>
+        <!-- REEMPLAZAR CON LINK REAL -->
+        <li><a href="#PENDIENTE-CALENDLY" class="nav-cta" target="_blank" rel="noopener">Agendá tu consulta</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay — identical to index -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú de navegación">
+    <a href="index.html#nosotras" class="mob-link">Nosotras</a>
+    <a href="index.html#servicios" class="mob-link">Servicios</a>
+    <a href="index.html#historias" class="mob-link">Historias</a>
+    <a href="faqs.html" class="mob-link">FAQs</a>
+    <a href="index.html#contacto" class="mob-link">Contacto</a>
+    <!-- REEMPLAZAR CON LINK REAL -->
+    <a href="https://wa.me/PENDIENTE" class="mobile-wa-btn" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+
+  <!-- ============================================================
+       FAQS PAGE HEADER
+  ============================================================ -->
+  <header class="faqs-hero">
+    <div class="container">
+      <span class="eyebrow">Preguntas Frecuentes</span>
+      <h1>Todo lo que <em>necesitás</em> saber</h1>
+      <p class="faqs-hero-sub">
+        Respuestas claras sobre costos, confidencialidad, la Ley 26.862 y tus derechos reproductivos.
+        Si no encontrás la tuya, <!-- REEMPLAZAR CON LINK REAL --><a href="https://wa.me/PENDIENTE" style="color:var(--rose);text-decoration:underline;text-underline-offset:3px" target="_blank" rel="noopener">escribinos</a>.
+      </p>
+      <!-- REEMPLAZAR CON LINK REAL -->
+      <a href="#PENDIENTE-CALENDLY" class="btn-primary" target="_blank" rel="noopener">
+        Agendá tu consulta →
+      </a>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       FAQS CONTENT
+  ============================================================ -->
+  <section class="faqs-body">
+    <div class="container">
+      <div class="faqs-layout">
+
+        <!-- Sidebar navigation -->
+        <aside class="faqs-sidebar reveal">
+          <h3>Categorías</h3>
+          <ul>
+            <li><a href="#consulta" class="sidebar-link">La consulta</a></li>
+            <li><a href="#derechos" class="sidebar-link">Derechos y cobertura</a></li>
+            <li><a href="#club" class="sidebar-link">El Club</a></li>
+          </ul>
+        </aside>
+
+        <!-- FAQ categories -->
+        <div class="faqs-main">
+
+          <!-- ── LA CONSULTA ── -->
+          <div class="faq-category reveal" id="consulta">
+            <h2 class="faq-category-title">Sobre <em>la consulta</em></h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span class="faq-question-text">¿Cuánto cuesta una consulta inicial?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  <strong>$28.000.</strong> Ese monto se deduce del presupuesto si continuás con un servicio más completo.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span class="faq-question-text">¿Cuánto tiempo toma resolver un caso?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  Depende del tipo de reclamo. <strong>Una carta documento debe responderse en 48 horas.</strong> Una acción de amparo depende de varios factores que evaluamos en la asesoría, pero es una vía legal considerada rápida.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span class="faq-question-text">¿La consulta es confidencial?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  <strong>100%.</strong> Rige el secreto profesional. Tu información no se comparte bajo ningún concepto.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span class="faq-question-text">¿Qué documentos necesito?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  Para un eventual reclamo necesitarás: <strong>DNI</strong>, <strong>carnet de la obra social o prepaga</strong>, <strong>indicación médica</strong> y <strong>resumen de historia clínica</strong>.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── DERECHOS ── -->
+          <div class="faq-category reveal" id="derechos">
+            <h2 class="faq-category-title">Sobre <em>derechos y cobertura</em></h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span class="faq-question-text">¿Solo trabajan casos de fertilidad?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  El estudio está especializado en <strong>derecho reproductivo en general</strong>. Si bien nuestra historia y expertise más conocido es en fertilidad asistida, llevamos amparos y reclamos en todo lo relacionado al derecho reproductivo y a la salud reproductiva.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span class="faq-question-text">¿Atienden en todo el país?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  <strong>Sí.</strong> Las consultas se realizan de forma online. Los amparos y reclamos se pueden gestionar en todas las provincias.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── EL CLUB ── -->
+          <div class="faq-category reveal" id="club">
+            <h2 class="faq-category-title">Sobre <em>El Club</em></h2>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span class="faq-question-text">¿Qué es El Club de las Soñadoras?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  Paula es la creadora de <strong>El Club de las Soñadoras</strong>, una comunidad de apoyo emocional gratuita en Instagram donde encontrarás información de valor y experiencias que sumarán esperanza a tu recorrido. Es un espacio separado del estudio jurídico, pero que nació del mismo lugar: la convicción de que ninguna mujer debería atravesar este camino sola.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" aria-expanded="false">
+                <span class="faq-question-text">¿Cómo puedo ser parte de la comunidad?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  Seguinos en Instagram (<a href="https://instagram.com/paulafertilidad" target="_blank" rel="noopener">@paulafertilidad</a>). Ahí encontrás contenido diario sobre derechos, tratamientos, legislación y las historias de otras soñadoras. Es todo lo que hay que hacer — la comunidad te recibe.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA block -->
+          <div class="faqs-cta reveal">
+            <h3>¿Lista para dar el <em>primer paso</em>?</h3>
+            <p>Una consulta puede cambiar todo lo que viene después.</p>
+            <!-- REEMPLAZAR CON LINK REAL -->
+            <a href="#PENDIENTE-CALENDLY" class="btn-primary" target="_blank" rel="noopener" style="margin-bottom:1.25rem">
+              Agendá tu consulta →
+            </a>
+            <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;justify-content:center;font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:0.75rem">
+              <span>① <a href="#PENDIENTE-CALENDLY" target="_blank" rel="noopener" style="color:var(--rose-light)"><!-- REEMPLAZAR -->Agendá en Calendly</a></span>
+              <span style="color:rgba(255,255,255,0.2)">→</span>
+              <span>② <a href="#PENDIENTE-MERCADOPAGO" target="_blank" rel="noopener" style="color:var(--rose-light)"><!-- REEMPLAZAR -->Pagá $28.000 en Mercado Pago</a></span>
+              <span style="color:rgba(255,255,255,0.2)">→</span>
+              <span>③ <a href="https://wa.me/PENDIENTE?text=Hola%2C%20te%20env%C3%ADo%20el%20comprobante%20de%20pago%20de%20mi%20consulta" target="_blank" rel="noopener" style="color:var(--rose-light)"><!-- REEMPLAZAR -->Enviá comprobante por WhatsApp</a></span>
+            </div>
+          </div>
+
+        </div><!-- /faqs-main -->
+      </div><!-- /faqs-layout -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER — IDENTICAL TO INDEX.HTML
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">El Club de las Soñadoras</div>
+          <div class="footer-sub">Shiff &amp; Castro · Estudio Jurídico Especializado en Derecho Reproductivo</div>
+          <p class="footer-tagline">Ley + alma. Para cada mujer que se niega a rendirse en el camino de ser mamá.</p>
+          <span class="footer-hashtag">#AquíNoSeRindeNadie</span>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html#nosotras">Nosotras</a></li>
+            <li><a href="index.html#servicios">Servicios</a></li>
+            <li><a href="index.html#historias">Historias</a></li>
+            <li><a href="faqs.html">Preguntas Frecuentes</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <!-- REEMPLAZAR CON LINK REAL -->
+            <li><a href="https://wa.me/PENDIENTE" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:paula@paulafertilidad.com">paula@paulafertilidad.com</a></li>
+            <li><a href="https://instagram.com/paulafertilidad" target="_blank" rel="noopener">@paulafertilidad</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Shiff &amp; Castro. Todos los derechos reservados. El Club de las Soñadoras® es una marca registrada.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/paulafertilidad" target="_blank" rel="noopener">Instagram</a>
+          <!-- REEMPLAZAR CON LINK REAL -->
+          <a href="https://wa.me/PENDIENTE" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="index.html">Inicio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante — identical -->
+  <!-- REEMPLAZAR CON LINK REAL -->
+  <a href="https://wa.me/PENDIENTE" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ── Nav scroll glass ─────────────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 55);
+    }, { passive: true });
+
+    // ── Hamburger ────────────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', closeMobileMenu));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMobileMenu();
+    });
+
+    // ── Accordion ────────────────────────────────────────────────
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item   = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('active');
+
+        // Close all other items in the same category
+        const allInCat = item.closest('.faq-category').querySelectorAll('.faq-item');
+        allInCat.forEach(other => {
+          if (other !== item && other.classList.contains('active')) {
+            other.classList.remove('active');
+            other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            const otherAnswer = other.querySelector('.faq-answer');
+            otherAnswer.style.maxHeight = '0';
+            otherAnswer.style.opacity  = '0';
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('active');
+          btn.setAttribute('aria-expanded', 'false');
+          answer.style.maxHeight = '0';
+          answer.style.opacity   = '0';
+        } else {
+          item.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          answer.style.opacity   = '1';
+        }
+      });
+    });
+
+    // ── Scroll reveal ────────────────────────────────────────────
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ── Sidebar active state on scroll — categories: consulta, derechos, club ──
+    const categories = document.querySelectorAll('.faq-category');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+    const catObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          sidebarLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    categories.forEach(cat => catObs.observe(cat));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shiff & Castro · Estudio Jurídico · Derecho Reproductivo</title>
+  <meta name="description" content="Shiff & Castro, estudio jurídico especializado en derecho reproductivo desde 2013. Si tu prepaga te niega cobertura, estás en el lugar correcto. Amparos urgentes · Asesoría · Derechos reproductivos.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — BRAND IDENTITY
+    ============================================================ */
+    :root {
+      --rose:        #C1847A;
+      --rose-light:  #E8C5BF;
+      --rose-pale:   #F5EAE7;
+      --rose-deep:   #8B5C54;
+      --cream:       #FAF7F2;
+      --cream-dark:  #F0EAE0;
+      --sage:        #8B9E8A;
+      --sage-light:  #C4D0C3;
+      --terracotta:  #B86B55;
+      --sand:        #D4C5B0;
+      --dark:        #2A1F1C;
+      --text-muted:  #8A7A74;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --radius-card: 22px;
+      --radius-btn:  100px;
+
+      --shadow-rose:       0 12px 32px rgba(193,132,122,0.22);
+      --shadow-rose-hover: 0 20px 48px rgba(193,132,122,0.32);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.042;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--font-body); }
+
+    /* ============================================================
+       CUSTOM CURSOR — desktop only
+    ============================================================ */
+    @media (pointer: fine) {
+      body { cursor: none; }
+      a, button, [onclick], input, select, textarea, label { cursor: none; }
+    }
+
+    #cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      width: 34px; height: 34px;
+      border: 1.5px solid var(--rose);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      opacity: 0;
+      transition: opacity 0.3s ease, width 0.35s cubic-bezier(0.34,1.56,0.64,1), height 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s ease, background 0.3s ease;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+    #cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 5px; height: 5px;
+      background: var(--rose);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      opacity: 0;
+      transition: opacity 0.3s ease, background 0.3s ease;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+    body.cursor-hover #cursor-ring {
+      width: 52px; height: 52px;
+      background: rgba(193,132,122,0.08);
+      border-color: var(--rose-deep);
+    }
+    body.cursor-dark #cursor-ring {
+      border-color: var(--rose-light);
+    }
+    body.cursor-dark #cursor-dot {
+      background: var(--rose-light);
+    }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .eyebrow {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      display: block;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.9rem 2rem;
+      background: var(--rose);
+      color: #fff;
+      border-radius: var(--radius-btn);
+      font-weight: 500;
+      font-size: 0.88rem;
+      letter-spacing: 0.02em;
+      transition: background 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: var(--rose-deep);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-rose);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.9rem 2rem;
+      background: transparent;
+      color: var(--rose-deep);
+      border: 1.5px solid var(--rose-light);
+      border-radius: var(--radius-btn);
+      font-weight: 500;
+      font-size: 0.88rem;
+      transition: border-color 0.3s ease, background 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-secondary:hover {
+      border-color: var(--rose);
+      background: var(--rose-pale);
+      transform: translateY(-3px);
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.35rem 0;
+      transition: padding 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+    }
+    .nav.scrolled {
+      background: rgba(250,247,242,0.93);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 0.85rem 0;
+      box-shadow: 0 1px 0 rgba(193,132,122,0.14);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--rose-deep);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.84rem;
+      font-weight: 400;
+      color: var(--dark);
+      letter-spacing: 0.03em;
+      position: relative;
+      padding-bottom: 5px;
+      transition: color 0.25s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    /* Gradient underline blooming from center */
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--rose) 50%, transparent 100%);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.38s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    /* Small ornamental dot above line */
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 50%;
+      width: 3px; height: 3px;
+      background: var(--rose);
+      border-radius: 50%;
+      transform: translateX(-50%) scale(0);
+      transform-origin: center;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1) 0.08s;
+    }
+    .nav-links a:hover {
+      color: var(--rose-deep);
+      transform: translateY(-1px);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a:hover::before { transform: translateX(-50%) scale(1); }
+
+    .nav-cta {
+      padding: 0.55rem 1.4rem;
+      background: var(--rose);
+      color: #fff !important;
+      border-radius: var(--radius-btn);
+      font-weight: 500 !important;
+      font-size: 0.82rem !important;
+      transition: background 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+    .nav-cta:hover { background: var(--rose-deep) !important; transform: translateY(-1px) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      /* position: fixed on mobile — see @media below */
+      min-width: 44px; min-height: 44px;
+      align-items: center; justify-content: center;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform 0.32s ease, opacity 0.32s ease, background 0.3s ease;
+    }
+    /* X state: rose-light so se ve sobre el fondo oscuro */
+    .hamburger.open span { background: rgba(232,197,191,0.9); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(42,31,28,0.97);
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: rgba(250,247,242,0.85);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.38s ease, transform 0.38s ease, color 0.2s ease;
+    }
+    .mobile-menu.open a:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.04s; }
+    .mobile-menu.open a:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
+    .mobile-menu.open a:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.12s; }
+    .mobile-menu.open a:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.16s; }
+    .mobile-menu.open a:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.20s; }
+    .mobile-menu a:hover { color: var(--rose-light); }
+    .mobile-wa-btn {
+      margin-top: 1rem;
+      padding: 0.75rem 2rem;
+      background: var(--rose);
+      color: #fff;
+      border-radius: var(--radius-btn);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.88rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.38s ease 0.26s, transform 0.38s ease 0.26s, background 0.2s ease;
+      text-decoration: none;
+    }
+    .mobile-menu.open .mobile-wa-btn { opacity: 1; transform: translateY(0); }
+    .mobile-wa-btn:hover { background: var(--rose-deep); }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+      padding-top: 5rem;
+    }
+
+    /* Animated blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 560px; height: 560px;
+      background: var(--rose-light);
+      opacity: 0.42;
+      top: -120px; right: 22%;
+      animation: blobFloat1 22s ease-in-out infinite;
+    }
+    .blob-2 {
+      width: 380px; height: 380px;
+      background: var(--sage-light);
+      opacity: 0.32;
+      bottom: -80px; left: -100px;
+      animation: blobFloat2 19s ease-in-out infinite;
+    }
+    .blob-3 {
+      width: 260px; height: 260px;
+      background: var(--sand);
+      opacity: 0.38;
+      top: 55%; left: 30%;
+      animation: blobFloat3 25s ease-in-out infinite;
+    }
+
+    @keyframes blobFloat1 {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33%       { transform: translate(50px,-40px) scale(1.06); }
+      66%       { transform: translate(-25px,55px) scale(0.94); }
+    }
+    @keyframes blobFloat2 {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      40%       { transform: translate(65px,45px) scale(1.09); }
+      80%       { transform: translate(-35px,-25px) scale(0.91); }
+    }
+    @keyframes blobFloat3 {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50%       { transform: translate(-45px,35px) scale(1.12); }
+    }
+
+    /* Particles */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: particleFloat var(--dur, 9s) ease-in-out infinite var(--del, 0s);
+    }
+    @keyframes particleFloat {
+      0%, 100% { transform: translate(0, 0); }
+      25%       { transform: translate(var(--mx, 12px), var(--my, -18px)); }
+      75%       { transform: translate(calc(var(--mx, 12px) * -1.1), calc(var(--my, -18px) * -0.6)); }
+    }
+
+    /* Hero content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 2rem 4rem 3.5rem;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fadeUp 0.65s ease forwards 0.15s;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cinematic text reveal */
+    @keyframes lineReveal {
+      from { transform: translateY(110%); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 4.8vw, 4.6rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--dark);
+      margin-bottom: 1.8rem;
+    }
+    .hero-line { overflow: hidden; }
+    .hero-line span {
+      display: block;
+      opacity: 0;
+      animation: lineReveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards var(--delay, 0s);
+    }
+    .hero-title em { font-style: italic; color: var(--rose); }
+
+    .hero-subtitle {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      max-width: 490px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.92s;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 1.1s;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.75rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 1.28s;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 0.3rem; }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Hero image side */
+    .hero-image-side {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      z-index: 2;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      width: 88%;
+      max-width: 460px;
+      margin-top: 5rem;
+    }
+
+    /* Decorative shape behind photo */
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--rose-pale);
+      border-radius: 28px 28px 65% 28px;
+      z-index: -1;
+      transform: translate(14px, 14px);
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 24px 24px 60% 24px;
+      mix-blend-mode: multiply;
+      display: block;
+    }
+
+    /* Floating info cards */
+    .float-card {
+      position: absolute;
+      background: #fff;
+      border: 1px solid var(--rose-light);
+      border-radius: 18px;
+      padding: 0.9rem 1.25rem;
+      box-shadow: 0 10px 36px rgba(193,132,122,0.28);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      opacity: 0;
+      min-width: 205px;
+      z-index: 10;
+    }
+    .float-card-1 {
+      left: -155px; top: 18%;
+      animation: fadeInLeft 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+    }
+    .float-card-2 {
+      left: -145px; bottom: 20%;
+      animation: fadeInLeft 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-24px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .float-card-icon { font-size: 1.55rem; flex-shrink: 0; }
+    .float-card-title { font-size: 0.82rem; font-weight: 500; color: var(--dark); line-height: 1.3; }
+    .float-card-sub { font-size: 0.68rem; color: var(--text-muted); margin-top: 0.18rem; letter-spacing: 0.03em; }
+
+    /* ============================================================
+       QUIÉNES SOMOS
+    ============================================================ */
+    .about {
+      padding: 8rem 0;
+      background: var(--cream);
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-image-col { position: relative; padding-bottom: 2.5rem; overflow: visible; }
+
+    .about-img-frame {
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      position: relative;
+    }
+    .about-img-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.65s ease;
+    }
+    .about-img-frame:hover img { transform: scale(1.04); }
+
+    /* Warm overlay on image */
+    .about-img-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(193,132,122,0.18), transparent 55%);
+      pointer-events: none;
+    }
+
+    .about-quote-card {
+      position: absolute;
+      bottom: -0.5rem;
+      right: -2.5rem;
+      background: var(--dark);
+      color: var(--cream);
+      padding: 1.5rem 1.6rem;
+      border-radius: 18px;
+      max-width: 230px;
+      box-shadow: 0 18px 44px rgba(42,31,28,0.28);
+    }
+    .about-quote-text {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      color: var(--rose-light);
+      margin-bottom: 0.65rem;
+    }
+    .about-quote-author {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .about-text-col { padding-right: 0.5rem; }
+    .about-text-col h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.2vw, 3.1rem);
+      font-weight: 400;
+      line-height: 1.18;
+      color: var(--dark);
+      margin-top: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    .about-text-col h2 em { font-style: italic; color: var(--rose); }
+    .about-text-col p {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    .about-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 1rem;
+      background: var(--rose-pale);
+      border: 1px solid var(--rose-light);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--rose-deep);
+      transition: background 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .badge:hover {
+      background: var(--rose-light);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       TIMELINE
+    ============================================================ */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 26px; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--rose-light) 15%, var(--rose-light) 85%, transparent);
+    }
+    .timeline-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.25rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      width: 12px; height: 12px;
+      background: var(--rose);
+      border-radius: 50%;
+      border: 3px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--rose-light);
+      flex-shrink: 0;
+      margin-bottom: 1.25rem;
+    }
+    .timeline-year {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--rose-deep);
+      margin-bottom: 0.55rem;
+    }
+    .timeline-content strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+    .timeline-content p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* btn-whatsapp */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.9rem 2rem;
+      background: #25D366;
+      color: #fff;
+      border-radius: var(--radius-btn);
+      font-weight: 500;
+      font-size: 0.88rem;
+      transition: background 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .btn-whatsapp:hover {
+      background: #1da953;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.3);
+    }
+
+    /* Conversion flow steps */
+    .flow-steps {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .flow-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .flow-step a {
+      color: var(--rose);
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .flow-step a:hover { color: var(--rose-deep); }
+    .flow-arrow {
+      color: var(--rose-light);
+      font-size: 0.72rem;
+    }
+
+    /* ============================================================
+       SERVICIOS
+    ============================================================ */
+    .services {
+      padding: 8rem 0;
+      background: var(--cream-dark);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 3.5vw, 3.1rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.18;
+      margin-top: 0.8rem;
+    }
+    .section-header h2 em { font-style: italic; color: var(--rose); }
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 490px;
+      margin: 1rem auto 0;
+      font-size: 0.97rem;
+      line-height: 1.78;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+    .service-card {
+      background: var(--cream);
+      border: 1px solid rgba(193,132,122,0.18);
+      border-radius: var(--radius-card);
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(193,132,122,0.08);
+      transition: transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.42s ease, border-color 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-rose-hover);
+      border-color: var(--rose-light);
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose), var(--rose-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.42s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 58px; height: 58px;
+      background: var(--rose-pale);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.55rem;
+      margin-bottom: 1.6rem;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+    }
+    .service-card:hover .service-icon {
+      transform: scale(1.14) rotate(-5deg);
+      background: var(--rose-light);
+    }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.22;
+    }
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.82;
+      margin-bottom: 1.75rem;
+    }
+    .service-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--rose);
+      letter-spacing: 0.06em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease, gap 0.25s ease;
+    }
+    .service-card:hover .service-link { color: var(--rose-deep); gap: 0.65rem; }
+
+    /* ============================================================
+       MARQUEE BANNER
+    ============================================================ */
+    .marquee-section {
+      background: var(--rose);
+      padding: 1.2rem 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marqueeScroll 20s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 0 1.25rem;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.18rem;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+    .marquee-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      flex-shrink: 0;
+    }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       HISTORIAS — INSTAGRAM DM
+    ============================================================ */
+    .historias {
+      padding: 8rem 0;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .historias::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.055;
+      pointer-events: none;
+    }
+
+    .historias .section-header h2 { color: var(--cream); }
+    .historias .section-header .eyebrow { color: var(--rose-light); }
+    .historias .section-header p { color: rgba(255,255,255,0.38); }
+
+    /* Masonry-style grid */
+    .dm-grid {
+      columns: 3;
+      column-gap: 1.4rem;
+    }
+
+    .dm-card {
+      break-inside: avoid;
+      margin-bottom: 1.4rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      opacity: 0.85;
+      cursor: pointer;
+      transition:
+        opacity 0.35s ease,
+        transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.38s ease,
+        border-color 0.38s ease;
+    }
+    .dm-card:hover {
+      opacity: 1;
+      transform: scale(1.025);
+      border-color: rgba(193,132,122,0.38);
+      box-shadow: 0 0 44px rgba(193,132,122,0.13);
+    }
+
+    /* DM conversation header */
+    .dm-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .dm-back {
+      color: rgba(255,255,255,0.4);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .dm-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--rose);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .dm-username {
+      flex: 1;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.02em;
+    }
+    .dm-icons {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* Message bubble — Instagram DM asymmetric radius */
+    .dm-bubble {
+      margin: 0.85rem 0.85rem 0;
+      padding: 1.2rem 1.45rem;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(193,132,122,0.22);
+      border-radius: 4px 18px 18px 18px;
+    }
+    .dm-bubble p {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.72;
+    }
+
+    /* DM footer */
+    .dm-footer {
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 1rem 0.9rem;
+      gap: 0.65rem;
+    }
+    .dm-detail {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.32);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      flex: 1;
+    }
+    .dm-time {
+      font-size: 0.66rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .dm-like {
+      display: flex;
+      align-items: center;
+      gap: 0.28rem;
+      cursor: pointer;
+      user-select: none;
+      padding: 4px;
+      min-width: 44px; min-height: 44px;
+      align-items: center; justify-content: flex-end;
+    }
+    .dm-heart {
+      display: inline-block;
+      font-size: 1.05rem;
+      transition: filter 0.2s ease;
+    }
+    @keyframes heartBounce {
+      0%   { transform: scale(1); }
+      20%  { transform: scale(1.5); }
+      50%  { transform: scale(0.88); }
+      75%  { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    .dm-heart.animate { animation: heartBounce 0.5s ease forwards; }
+    .dm-count {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      min-width: 30px;
+      text-align: right;
+    }
+
+    /* ============================================================
+       CONTACTO
+    ============================================================ */
+    .contact {
+      padding: 8rem 0;
+      background: var(--cream);
+    }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5.5rem;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3vw, 2.9rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-top: 0.8rem;
+      margin-bottom: 1.1rem;
+    }
+    .contact-info h2 em { font-style: italic; color: var(--rose); }
+    .contact-info > p {
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 2rem;
+      font-size: 0.97rem;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.3rem;
+      background: var(--rose-pale);
+      border: 1px solid var(--rose-light);
+      border-radius: 14px;
+      font-size: 0.9rem;
+      color: var(--dark);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .contact-item:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-rose);
+    }
+    .contact-item-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .contact-item-title { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.12rem; }
+    .contact-item-sub { font-size: 0.78rem; color: var(--text-muted); }
+
+    .ley-alerta {
+      padding: 1.2rem 1.5rem;
+      background: rgba(193,132,122,0.08);
+      border: 1px solid var(--rose-light);
+      border-left: 4px solid var(--rose);
+      border-radius: 0 14px 14px 0;
+      font-size: 0.86rem;
+      color: var(--rose-deep);
+      line-height: 1.75;
+    }
+    .ley-alerta strong { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; }
+
+    /* Form */
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--cream-dark);
+      border-radius: var(--radius-card);
+      padding: 2.5rem;
+      box-shadow: 0 8px 36px rgba(193,132,122,0.09);
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.48rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--cream);
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 11px;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--dark);
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(193,132,122,0.13);
+    }
+    .form-group textarea { resize: vertical; min-height: 115px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--rose);
+      color: #fff;
+      border-radius: var(--radius-btn);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 0.4rem;
+      transition: background 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .form-submit:hover {
+      background: var(--rose-deep);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-rose);
+    }
+    .form-submit:active { transform: translateY(0); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--dark);
+      padding: 4.5rem 0 2.5rem;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--rose-light);
+      margin-bottom: 0.3rem;
+    }
+    .footer-sub {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.85rem;
+      text-transform: uppercase;
+    }
+    .footer-tagline {
+      font-size: 0.86rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.75;
+      max-width: 250px;
+    }
+    .footer-hashtag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.12rem;
+      color: var(--rose);
+    }
+    .footer-col h4 {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 1.3rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-col a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: var(--rose-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy { font-size: 0.76rem; color: rgba(255,255,255,0.22); }
+    .footer-social { display: flex; gap: 1.25rem; }
+    .footer-social a { font-size: 0.78rem; color: rgba(255,255,255,0.32); transition: color 0.2s ease; }
+    .footer-social a:hover { color: var(--rose-light); }
+
+    /* ============================================================
+       WHATSAPP FLOTANTE
+    ============================================================ */
+    .wa-float {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 900;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 22px rgba(37,211,102,0.42);
+      transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.38s ease;
+    }
+    .wa-float:hover {
+      transform: scale(1.14);
+      box-shadow: 0 6px 32px rgba(37,211,102,0.58);
+    }
+    .wa-float svg { width: 29px; height: 29px; fill: #fff; }
+    .wa-float::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,0.38);
+      animation: waPulse 2.2s ease-out infinite;
+    }
+    @keyframes waPulse {
+      0%   { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.55); opacity: 0; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger {
+        display: flex;
+        /* Fixed: escapa el stacking context del nav (z-index:1000)
+           y queda siempre sobre el mobile-menu (z-index:1050) */
+        position: fixed;
+        top: 1.1rem;
+        right: 1.25rem;
+        z-index: 1200;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-bottom: 4rem;
+      }
+      .hero-image-side {
+        height: auto;
+        order: -1;
+        padding-top: 7rem;
+        padding-bottom: 2rem;
+      }
+      .hero-img-wrap { width: 72%; max-width: 340px; margin: 0 auto; }
+      .float-card { display: none; }
+      .hero-content {
+        padding: 1.5rem 1.5rem 3.5rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-title { text-align: center; width: 100%; }
+      .hero-line { text-align: center; }
+      .hero-ctas { justify-content: center; }
+      .hero-stats { justify-content: center; gap: 1.75rem; }
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
+
+      .about-inner { grid-template-columns: 1fr; gap: 4rem; direction: ltr; }
+      .timeline { grid-template-columns: 1fr 1fr; row-gap: 3rem; }
+      .timeline::before { display: none; }
+      .about-text-col { padding-right: 0; }
+      .about-quote-card { right: 0.5rem; max-width: 190px; }
+
+      .services-grid { grid-template-columns: 1fr; max-width: 540px; margin: 0 auto; }
+
+      .dm-grid { columns: 2; }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 1.25rem; }
+      .hero-title { font-size: clamp(2rem, 7.5vw, 2.8rem); }
+      .hero-stats { gap: 1.25rem; }
+      .stat-number { font-size: 2rem; }
+      .stat-label { font-size: 0.62rem; }
+      .dm-grid { columns: 1; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.85rem; text-align: center; }
+      .timeline { grid-template-columns: 1fr; row-gap: 2.5rem; }
+      .flow-steps { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor (hidden on touch/mobile via CSS) -->
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-dot"  aria-hidden="true"></div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        El Club de las Soñadoras
+        <small>Shiff &amp; Castro · Derecho Reproductivo</small>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#nosotras">Nosotras</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#historias">Historias</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <!-- REEMPLAZAR CON LINK REAL -->
+        <li><a href="#PENDIENTE-CALENDLY" class="nav-cta" target="_blank" rel="noopener">Agendá tu consulta</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú de navegación">
+    <a href="#nosotras" class="mob-link">Nosotras</a>
+    <a href="#servicios" class="mob-link">Servicios</a>
+    <a href="#historias" class="mob-link">Historias</a>
+    <a href="faqs.html" class="mob-link">FAQs</a>
+    <a href="#contacto" class="mob-link">Contacto</a>
+    <!-- REEMPLAZAR CON LINK REAL -->
+    <a href="https://wa.me/PENDIENTE" class="mobile-wa-btn" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="inicio">
+    <!-- Animated blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Floating particles (generated by JS) -->
+    <div class="particles" id="particles" aria-hidden="true"></div>
+
+    <!-- Left: content -->
+    <div class="hero-content">
+      <span class="eyebrow hero-eyebrow">Estudio Jurídico · Derecho Reproductivo · Desde 2013</span>
+
+      <h1 class="hero-title">
+        <div class="hero-line"><span style="--delay:.28s">Hace 11 años defendemos</span></div>
+        <div class="hero-line"><span style="--delay:.44s">tu derecho a</span></div>
+        <div class="hero-line"><span style="--delay:.60s"><em>ser madre</em></span></div>
+      </h1>
+
+      <p class="hero-subtitle">
+        Cuando tu prepaga te niega cobertura, cuando no sabés qué derechos tenés ni cómo seguir.
+        Acá estamos.
+      </p>
+
+      <div class="hero-ctas">
+        <!-- REEMPLAZAR CON LINK REAL -->
+        <a href="#PENDIENTE-CALENDLY" class="btn-primary" target="_blank" rel="noopener">
+          Agendá tu consulta →
+        </a>
+        <a href="#servicios" class="btn-secondary">
+          Conocé nuestros servicios →
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">11 años</span>
+          <span class="stat-label">Especializados en derecho reproductivo</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">+61.000</span>
+          <span class="stat-label">Mujeres en la comunidad</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Dedicación a tu caso</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: photo + floating cards -->
+    <div class="hero-image-side">
+      <div class="hero-img-wrap">
+        <img
+          src="imagenes/09.jpg"
+          alt="Pau Castro, abogada especializada en fertilidad"
+          onerror="this.src='https://placehold.co/600x750/E8C5BF/8B5C54?text=Pau+Castro'"
+          loading="eager"
+        >
+
+        <!-- Floating card 1 — AFTER img so it paints on top -->
+        <div class="float-card float-card-1" aria-hidden="true">
+          <span class="float-card-icon">⚖️</span>
+          <div>
+            <div class="float-card-title">Amparos urgentes</div>
+            <div class="float-card-sub">Ley 26.862 · Fertilidad asistida</div>
+          </div>
+        </div>
+
+        <!-- Floating card 2 -->
+        <div class="float-card float-card-2" aria-hidden="true">
+          <span class="float-card-icon">🤝</span>
+          <div>
+            <div class="float-card-title">#AquíNoSeRindeNadie</div>
+            <div class="float-card-sub">+61.000 soñadoras</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       QUIÉNES SOMOS
+  ============================================================ -->
+  <section class="about" id="nosotras">
+    <div class="container">
+
+      <!-- PARTE 1 — Intro del estudio -->
+      <div class="about-intro reveal" style="text-align:center;max-width:780px;margin:0 auto 5rem">
+        <span class="eyebrow">Quiénes Somos</span>
+        <h2 style="font-family:var(--font-display);font-size:clamp(2rem,3.5vw,3.2rem);font-weight:400;line-height:1.18;color:var(--dark);margin:0.85rem 0 1.25rem">
+          No somos solo abogados.
+        </h2>
+        <p style="font-family:var(--font-display);font-style:italic;font-size:1.2rem;color:var(--rose);margin-bottom:1.5rem;letter-spacing:0.02em">
+          Somos personas que vivieron lo que estás viviendo.
+        </p>
+        <p style="font-size:0.97rem;color:var(--text-muted);line-height:1.88;max-width:680px;margin:0 auto 1.2rem">
+          Somos un estudio especializado en derecho reproductivo desde 2013. Pero la razón por la que nos especializamos
+          no fue académica — fue personal. Atravesamos ciclos de esperanza y duelo. Recibimos desinformación.
+          Y descubrimos que había derechos que la mayoría desconocía. Derechos que las prepagas vulneraban.
+          Derechos que la ley otorgaba pero nadie explicaba.
+        </p>
+        <p style="font-size:0.97rem;color:var(--text-muted);line-height:1.88;max-width:680px;margin:0 auto 2rem">
+          Decidimos aprender. Estudiamos, investigamos, litigamos. Y ganamos. Pero mientras lo hacíamos, nos dimos
+          cuenta de que no éramos los únicos.
+        </p>
+        <div class="about-badges" style="justify-content:center;margin-bottom:2.5rem">
+          <span class="badge">⚖️ Miles de mujeres asesoradas</span>
+          <span class="badge">💰 Coberturas recuperadas</span>
+          <span class="badge">📜 Fallos que marcan jurisprudencia</span>
+          <span class="badge">🩺 Colaboramos con especialistas médicos</span>
+          <span class="badge">🌐 Comunidad +61.000 personas</span>
+        </div>
+        <!-- REEMPLAZAR CON LINK REAL -->
+        <a href="#PENDIENTE-CALENDLY" class="btn-primary" target="_blank" rel="noopener">
+          Agendá tu reunión →
+        </a>
+      </div>
+
+      <!-- PARTE 2 — Paula Shiff -->
+      <div class="about-inner reveal" style="margin-bottom:6rem">
+
+        <!-- Image column -->
+        <div class="about-image-col">
+          <div class="about-img-frame">
+            <img
+              src="imagenes/01.jpg"
+              alt="Paula Shiff, abogada especialista en derecho reproductivo"
+              onerror="this.src='https://placehold.co/500x625/F5EAE7/8B5C54?text=Paula+Shiff'"
+              loading="lazy"
+            >
+          </div>
+          <div class="about-quote-card">
+            <p class="about-quote-text">"Vivir el proceso me enseñó que el miedo necesita información y compañía"</p>
+            <p class="about-quote-author">— Paula Shiff</p>
+          </div>
+        </div>
+
+        <!-- Text column -->
+        <div class="about-text-col">
+          <span class="eyebrow">Paula Shiff</span>
+          <h2>Abogada UBA · <em>Especialista en Derecho Reproductivo</em></h2>
+          <p style="font-family:var(--font-body);font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.25rem">
+            Especialista desde 2013 · Creadora de El Club de las Soñadoras®
+          </p>
+          <p>
+            De pasar por un camino difícil. De buscar ser madre. Descubrir que había derechos que no conocía.
+            De pelear por ellos. De ganar. Y de decidir que otras mujeres no tuvieran que hacer ese camino sin
+            ayuda profesional.
+          </p>
+          <div class="about-badges" style="margin-top:1.75rem">
+            <span class="badge">⚖️ Miles de mujeres asesoradas</span>
+            <span class="badge">💰 Millones recuperados en coberturas</span>
+            <span class="badge">👩‍💼 Derechos laborales de pacientes</span>
+            <span class="badge">📜 Fallos con jurisprudencia</span>
+            <span class="badge">🩺 Colabora con especialistas</span>
+            <span class="badge">📱 +61.000 en redes sociales</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PARTE 3 — Martín Castro -->
+      <div class="about-inner about-inner--reverse reveal" style="margin-bottom:6rem;direction:rtl">
+
+        <!-- Image column (right side) -->
+        <div class="about-image-col" style="direction:ltr">
+          <div class="about-img-frame">
+            <img
+              src="imagenes/12.jpg"
+              alt="Martín Castro, abogado especialista en derecho reproductivo"
+              onerror="this.src='https://placehold.co/400x500/C0BBB3/26251F?text=Martín+Castro'"
+              loading="lazy"
+            >
+          </div>
+        </div>
+
+        <!-- Text column (left side) -->
+        <div class="about-text-col" style="direction:ltr">
+          <span class="eyebrow">Martín Castro</span>
+          <h2>Abogado UBA · <em>Especialista en Derecho Reproductivo</em></h2>
+          <p style="font-family:var(--font-body);font-size:0.8rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.25rem">
+            Especialista desde 2013
+          </p>
+          <!-- TEXTO MARTÍN PENDIENTE — reemplazar cuando llegue -->
+          <p>
+            Ha transitado su propia búsqueda, acompañando desde el rol del hombre — un lugar que muchas veces
+            se vive en soledad. Su gran escucha y empatía crean un vínculo de confianza que todos valoran.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="reveal" style="margin-top:2rem">
+        <div style="text-align:center;margin-bottom:3rem">
+          <span class="eyebrow">Nuestra historia</span>
+          <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--dark);margin-top:0.7rem">
+            Un camino de <em style="font-style:italic;color:var(--rose)">once años</em>
+          </h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2013</div>
+            <div class="timeline-content">
+              <strong>El inicio</strong>
+              <p>Paula crea el primer foro sobre ley de reproducción asistida</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2015–2018</div>
+            <div class="timeline-content">
+              <strong>Consolidación</strong>
+              <p>El foro crece. Comunidad en Facebook</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2019–2022</div>
+            <div class="timeline-content">
+              <strong>Expansión</strong>
+              <p>El Club llega a Instagram. El estudio se formaliza</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023–2024</div>
+            <div class="timeline-content">
+              <strong>Referencia nacional</strong>
+              <p>Paula es reconocida como especialista a nivel nacional</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICIOS
+  ============================================================ -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Lo que hacemos</span>
+        <h2>Cómo podemos <em>ayudarte</em></h2>
+        <p>Desde la primera consulta hasta la resolución de tu caso. Elegís por dónde empezar.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Card 1 — Consulta Inicial -->
+        <div class="service-card reveal">
+          <div class="service-icon">📋</div>
+          <h3>Consulta Inicial</h3>
+          <p style="font-family:var(--font-display);font-style:italic;font-size:1rem;color:var(--rose);margin-bottom:1rem">"Conocé tus derechos"</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.4rem">
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Análisis completo de tu situación</li>
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Explicación clara de tus derechos</li>
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Revisión de documentos</li>
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Orientación sobre próximos pasos</li>
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Presupuesto si necesitás más ayuda</li>
+          </ul>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:0.35rem">Duración: 30–45 minutos</p>
+          <p style="font-family:var(--font-display);font-size:1.55rem;font-weight:500;color:var(--dark);margin-bottom:1.4rem">$28.000</p>
+          <!-- REEMPLAZAR CON LINK REAL -->
+          <a href="#PENDIENTE-CALENDLY" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center;margin-bottom:1rem">
+            Agendá tu consulta →
+          </a>
+          <div class="flow-steps">
+            <div class="flow-step">
+              <span style="font-weight:600;color:var(--rose)">①</span>
+              <!-- REEMPLAZAR CON LINK REAL -->
+              <a href="#PENDIENTE-CALENDLY" target="_blank" rel="noopener">Agendá en Calendly</a>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+              <span style="font-weight:600;color:var(--rose)">②</span>
+              <!-- REEMPLAZAR CON LINK REAL -->
+              <a href="#PENDIENTE-MERCADOPAGO" target="_blank" rel="noopener">Pagá $28.000 en Mercado Pago</a>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+              <span style="font-weight:600;color:var(--rose)">③</span>
+              <!-- REEMPLAZAR CON LINK REAL -->
+              <a href="https://wa.me/PENDIENTE?text=Hola%2C%20te%20env%C3%ADo%20el%20comprobante%20de%20pago%20de%20mi%20consulta" target="_blank" rel="noopener">Enviá comprobante por WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 — Reclamo por Cobertura Negada -->
+        <div class="service-card reveal" style="transition-delay:.1s">
+          <div class="service-icon">⚖️</div>
+          <h3>Reclamo por Cobertura Negada</h3>
+          <p style="font-family:var(--font-display);font-style:italic;font-size:1rem;color:var(--rose);margin-bottom:1rem">"Tu prepaga te negó cobertura. Vamos a reclamar."</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem">
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Análisis de situación</li>
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Redacción de carta documento</li>
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Seguimiento del proceso</li>
+            <li style="font-size:0.88rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose);flex-shrink:0">·</span> Acción de Amparo si es necesario</li>
+          </ul>
+          <p style="font-size:0.78rem;font-weight:500;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem">Casos frecuentes</p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.35rem;margin-bottom:1.75rem">
+            <li style="font-size:0.82rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose-light);flex-shrink:0">—</span> Cobertura FIV negada (incluso 4° tratamiento)</li>
+            <li style="font-size:0.82rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose-light);flex-shrink:0">—</span> Falta de respuesta de prepaga / obra social</li>
+            <li style="font-size:0.82rem;color:var(--text-muted);display:flex;gap:0.5rem;align-items:baseline"><span style="color:var(--rose-light);flex-shrink:0">—</span> Falta de cobertura de criopreservación</li>
+          </ul>
+          <!-- REEMPLAZAR CON LINK REAL -->
+          <a href="#PENDIENTE-CALENDLY" class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center">
+            Consultá tu caso →
+          </a>
+        </div>
+
+        <!-- Card 3 — ¿No sabés por dónde empezar? -->
+        <div class="service-card reveal" style="transition-delay:.2s;display:flex;flex-direction:column;align-items:center;text-align:center;background:var(--dark);border-color:rgba(193,132,122,0.25)">
+          <div class="service-icon" style="background:rgba(193,132,122,0.15)">💬</div>
+          <h3 style="color:var(--cream)">¿No sabés qué derechos tenés?</h3>
+          <p style="color:rgba(255,255,255,0.55);flex:1">
+            Una consulta puede cambiarlo todo. Contanos tu situación y te orientamos.
+          </p>
+          <!-- REEMPLAZAR CON LINK REAL -->
+          <a href="https://wa.me/PENDIENTE" class="btn-whatsapp" target="_blank" rel="noopener" style="width:100%;justify-content:center;margin-top:auto">
+            💬 Escribinos por WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE BANNER
+  ============================================================ -->
+  <div class="marquee-section" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">#AquíNoSeRindeNadie <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Tu derecho a ser mamá existe en la ley <span class="marquee-dot"></span></span>
+      <span class="marquee-item">#AquíNoSeRindeNadie <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Ley 26.862 · Fertilidad Asistida <span class="marquee-dot"></span></span>
+      <span class="marquee-item">#AquíNoSeRindeNadie <span class="marquee-dot"></span></span>
+      <span class="marquee-item">El Club de las Soñadoras <span class="marquee-dot"></span></span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item">#AquíNoSeRindeNadie <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Tu derecho a ser mamá existe en la ley <span class="marquee-dot"></span></span>
+      <span class="marquee-item">#AquíNoSeRindeNadie <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Ley 26.862 · Fertilidad Asistida <span class="marquee-dot"></span></span>
+      <span class="marquee-item">#AquíNoSeRindeNadie <span class="marquee-dot"></span></span>
+      <span class="marquee-item">El Club de las Soñadoras <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HISTORIAS — INSTAGRAM DM
+  ============================================================ -->
+  <section class="historias" id="historias">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Historias Reales</span>
+        <h2>Las que ya <em>llegaron</em></h2>
+        <p>Mensajes reales de mujeres que encontraron su camino. Reemplazar por testimonios con permiso antes de publicar.</p>
+      </div>
+
+      <div class="dm-grid">
+
+        <!-- Card 1 — @maria.flo -->
+        <div class="dm-card reveal">
+          <div class="dm-header">
+            <span class="dm-back">‹</span>
+            <div class="dm-avatar">MF</div>
+            <div class="dm-username">@maria.flo</div>
+            <div class="dm-icons"><span>📷</span><span>📹</span></div>
+          </div>
+          <div class="dm-bubble">
+            <p>"Cuando la obra social me rechazó por segunda vez, ya no tenía energías. Pau no solo presentó el amparo en tiempo récord, sino que me explicó cada paso. En tres semanas tenía la autorización."</p>
+          </div>
+          <div class="dm-footer">
+            <span class="dm-detail">Amparo FIV · Bs As</span>
+            <span class="dm-time">hace 3 semanas</span>
+            <div class="dm-like" onclick="toggleLike(this)">
+              <span class="dm-heart">❤️</span>
+              <span class="dm-count">847</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 — @laurita_cba -->
+        <div class="dm-card reveal" style="transition-delay:.1s">
+          <div class="dm-header">
+            <span class="dm-back">‹</span>
+            <div class="dm-avatar" style="background:var(--sage)">LC</div>
+            <div class="dm-username">@laurita_cba</div>
+            <div class="dm-icons"><span>📷</span><span>📹</span></div>
+          </div>
+          <div class="dm-bubble">
+            <p>"Encontré a Pau cuando más perdida estaba. Su cuenta me dio la información que necesitaba y cuando necesité ayuda legal, ya sabía que era la persona indicada. Es abogada y es persona."</p>
+          </div>
+          <div class="dm-footer">
+            <span class="dm-detail">Asesoría · Córdoba</span>
+            <span class="dm-time">hace 1 mes</span>
+            <div class="dm-like" onclick="toggleLike(this)">
+              <span class="dm-heart">❤️</span>
+              <span class="dm-count">1.2K</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 — @vale.sonadora -->
+        <div class="dm-card reveal" style="transition-delay:.2s">
+          <div class="dm-header">
+            <span class="dm-back">‹</span>
+            <div class="dm-avatar" style="background:var(--terracotta)">VS</div>
+            <div class="dm-username">@vale.sonadora</div>
+            <div class="dm-icons"><span>📷</span><span>📹</span></div>
+          </div>
+          <div class="dm-bubble">
+            <p>"El coaching me cambió la cabeza. Llegué a las sesiones angustiada y salí con herramientas reales. Pau entiende porque vivió el proceso. Eso no tiene precio."</p>
+          </div>
+          <div class="dm-footer">
+            <span class="dm-detail">Coaching · Rosario</span>
+            <span class="dm-time">hace 2 semanas</span>
+            <div class="dm-like" onclick="toggleLike(this)">
+              <span class="dm-heart">❤️</span>
+              <span class="dm-count">934</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 — @ana.g.mza -->
+        <div class="dm-card reveal" style="transition-delay:.3s">
+          <div class="dm-header">
+            <span class="dm-back">‹</span>
+            <div class="dm-avatar" style="background:var(--sand);color:var(--dark)">AG</div>
+            <div class="dm-username">@ana.g.mza</div>
+            <div class="dm-icons"><span>📷</span><span>📹</span></div>
+          </div>
+          <div class="dm-bubble">
+            <p>"Mi prepaga decía que yo ya había 'agotado' los intentos. Pau demostró que eso no existe en la ley. Gracias a ella voy por mi cuarto transfer con cobertura completa."</p>
+          </div>
+          <div class="dm-footer">
+            <span class="dm-detail">Amparo · Mendoza</span>
+            <span class="dm-time">hace 5 días</span>
+            <div class="dm-like" onclick="toggleLike(this)">
+              <span class="dm-heart">❤️</span>
+              <span class="dm-count">2.1K</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 — @romi.bsas -->
+        <div class="dm-card reveal" style="transition-delay:.4s">
+          <div class="dm-header">
+            <span class="dm-back">‹</span>
+            <div class="dm-avatar" style="background:var(--rose-deep)">RB</div>
+            <div class="dm-username">@romi.bsas</div>
+            <div class="dm-icons"><span>📷</span><span>📹</span></div>
+          </div>
+          <div class="dm-bubble">
+            <p>"La comunidad del Club me hizo sentir que no estaba sola. Pero cuando necesité respaldo legal de verdad, Pau respondió rápido, claro, y con un trato humano que uno no espera de una abogada."</p>
+          </div>
+          <div class="dm-footer">
+            <span class="dm-detail">Asesoría + Coaching · CABA</span>
+            <span class="dm-time">hace 1 mes</span>
+            <div class="dm-like" onclick="toggleLike(this)">
+              <span class="dm-heart">❤️</span>
+              <span class="dm-count">1.7K</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 — @caro.esperando -->
+        <div class="dm-card reveal" style="transition-delay:.5s">
+          <div class="dm-header">
+            <span class="dm-back">‹</span>
+            <div class="dm-avatar" style="background:var(--sage-light);color:var(--dark)">CE</div>
+            <div class="dm-username">@caro.esperando</div>
+            <div class="dm-icons"><span>📷</span><span>📹</span></div>
+          </div>
+          <div class="dm-bubble">
+            <p>"Nunca imaginé que iba a necesitar una abogada para poder ser mamá. Pau me explicó mis derechos con una claridad y una calidez que no olvidé más."</p>
+          </div>
+          <div class="dm-footer">
+            <span class="dm-detail">Amparo · Santa Fe</span>
+            <span class="dm-time">hace 2 meses</span>
+            <div class="dm-like" onclick="toggleLike(this)">
+              <span class="dm-heart">❤️</span>
+              <span class="dm-count">651</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /dm-grid -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACTO
+  ============================================================ -->
+  <section class="contact" id="contacto">
+    <div class="container">
+      <div class="contact-inner">
+
+        <!-- Info column -->
+        <div class="contact-info reveal">
+          <span class="eyebrow">Contacto</span>
+          <h2>Hablemos. <em>El primer paso es gratuito.</em></h2>
+          <p>
+            Mandanos un WhatsApp, escribinos un mail o completá el formulario.
+            Respondemos en menos de 24 horas. Sin burocracia, sin formularios interminables.
+            Solo escucharte.
+          </p>
+
+          <div class="contact-items">
+            <!-- REEMPLAZAR CON LINK REAL -->
+            <a href="https://wa.me/PENDIENTE" class="contact-item" target="_blank" rel="noopener">
+              <span class="contact-item-icon">💬</span>
+              <div>
+                <div class="contact-item-title">WhatsApp</div>
+                <!-- REEMPLAZAR CON NÚMERO REAL -->
+                <div class="contact-item-sub">Urgencias · Respuesta rápida</div>
+              </div>
+            </a>
+            <a href="mailto:paula@paulafertilidad.com" class="contact-item">
+              <span class="contact-item-icon">✉️</span>
+              <div>
+                <div class="contact-item-title">Email</div>
+                <div class="contact-item-sub">paula@paulafertilidad.com</div>
+              </div>
+            </a>
+            <a href="https://instagram.com/paulafertilidad" class="contact-item" target="_blank" rel="noopener">
+              <span class="contact-item-icon">📷</span>
+              <div>
+                <div class="contact-item-title">Instagram</div>
+                <div class="contact-item-sub">@paulafertilidad · +61.000 soñadoras</div>
+              </div>
+            </a>
+            <div class="contact-item" style="cursor:default">
+              <span class="contact-item-icon">📍</span>
+              <div>
+                <div class="contact-item-title">Ubicación</div>
+                <div class="contact-item-sub">Buenos Aires, Argentina · Atendemos en todo el país</div>
+              </div>
+            </div>
+            <div class="contact-item" style="cursor:default">
+              <span class="contact-item-icon">🕐</span>
+              <div>
+                <div class="contact-item-title">Horario</div>
+                <div class="contact-item-sub">Lunes a Viernes 9 AM – 6 PM (ART)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flujo de conversión completo -->
+          <div class="ley-alerta" style="margin-bottom:1.25rem">
+            <strong>¿Lista para dar el primer paso?</strong>
+            <div class="flow-steps" style="margin-top:0.75rem">
+              <div class="flow-step">
+                <span style="font-weight:600;color:var(--rose)">①</span>
+                <!-- REEMPLAZAR CON LINK REAL -->
+                <a href="#PENDIENTE-CALENDLY" target="_blank" rel="noopener" style="color:var(--rose-deep)">Agendá tu consulta en Calendly</a>
+              </div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step">
+                <span style="font-weight:600;color:var(--rose)">②</span>
+                <!-- REEMPLAZAR CON LINK REAL -->
+                <a href="#PENDIENTE-MERCADOPAGO" target="_blank" rel="noopener" style="color:var(--rose-deep)">Completá el pago de $28.000 en Mercado Pago</a>
+              </div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-step">
+                <span style="font-weight:600;color:var(--rose)">③</span>
+                <!-- REEMPLAZAR CON LINK REAL -->
+                <a href="https://wa.me/PENDIENTE?text=Hola%2C%20te%20env%C3%ADo%20el%20comprobante%20de%20pago%20de%20mi%20consulta" target="_blank" rel="noopener" style="color:var(--rose-deep)">Enviá tu comprobante por WhatsApp y listo</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ley-alerta">
+            <strong>⚖️ Ley 26.862 — Fertilidad Asistida</strong>
+            Obras sociales y prepagas están obligadas a cubrir hasta 3 tratamientos de alta
+            complejidad por año. Si te rechazaron, tenés derecho legal. Consultanos hoy.
+          </div>
+        </div>
+
+        <!-- Form column -->
+        <div class="contact-form-col reveal" style="transition-delay:.14s">
+          <div class="form-card">
+            <span class="eyebrow" style="margin-bottom:1.3rem;display:block">Escribinos</span>
+            <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                  <label for="contacto-dato">WhatsApp / Email</label>
+                  <input type="text" id="contacto-dato" name="contacto" placeholder="Para contactarte" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="servicio">¿Qué necesitás?</label>
+                <select id="servicio" name="servicio" required>
+                  <option value="" disabled selected>Seleccioná una opción</option>
+                  <option value="amparo">Amparo de fertilidad (urgente)</option>
+                  <option value="asesoria">Asesoría legal 1:1</option>
+                  <option value="coaching">Coaching en fertilidad</option>
+                  <option value="consulta">Consulta general</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="mensaje">Contanos tu situación</label>
+                <textarea id="mensaje" name="mensaje" placeholder="¿Qué te está pasando con tu obra social? ¿En qué punto del proceso estás?"></textarea>
+              </div>
+              <button type="submit" class="form-submit" id="formBtn">Enviar mensaje →</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">El Club de las Soñadoras</div>
+          <div class="footer-sub">Shiff &amp; Castro · Estudio Jurídico Especializado en Derecho Reproductivo</div>
+          <p class="footer-tagline">Ley + alma. Para cada mujer que se niega a rendirse en el camino de ser mamá.</p>
+          <span class="footer-hashtag">#AquíNoSeRindeNadie</span>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#nosotras">Nosotras</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#historias">Historias</a></li>
+            <li><a href="faqs.html">Preguntas Frecuentes</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <!-- REEMPLAZAR CON LINK REAL -->
+            <li><a href="https://wa.me/PENDIENTE" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="mailto:paula@paulafertilidad.com">paula@paulafertilidad.com</a></li>
+            <li><a href="https://instagram.com/paulafertilidad" target="_blank" rel="noopener">@paulafertilidad</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Shiff &amp; Castro. Todos los derechos reservados. El Club de las Soñadoras® es una marca registrada. Los testimonios son representativos — reemplazar por reales antes de publicar.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/paulafertilidad" target="_blank" rel="noopener">Instagram</a>
+          <!-- REEMPLAZAR CON LINK REAL -->
+          <a href="https://wa.me/PENDIENTE" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="faqs.html">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <!-- REEMPLAZAR CON LINK REAL -->
+  <a href="https://wa.me/PENDIENTE" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ── Custom cursor (desktop / pointer: fine only) ─────────────
+    (function initCursor() {
+      // Only on devices with a fine pointer (mouse)
+      if (!window.matchMedia('(pointer: fine)').matches) return;
+
+      const ring = document.getElementById('cursor-ring');
+      const dot  = document.getElementById('cursor-dot');
+      if (!ring || !dot) return;
+
+      let mx = 0, my = 0;   // mouse position
+      let rx = 0, ry = 0;   // ring lag position
+      let visible = false;
+
+      // Show on first move
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        dot.style.transform  = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+
+        if (!visible) {
+          visible = true;
+          ring.style.opacity = '0.65';
+          dot.style.opacity  = '1';
+        }
+      }, { passive: true });
+
+      // Hide when leaving window
+      document.addEventListener('mouseleave', () => {
+        ring.style.opacity = '0';
+        dot.style.opacity  = '0';
+        visible = false;
+      });
+
+      // Smooth ring follow (lerp)
+      (function animRing() {
+        rx += (mx - rx) * 0.11;
+        ry += (my - ry) * 0.11;
+        ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+        requestAnimationFrame(animRing);
+      })();
+
+      // Hover state on interactive elements
+      const interactiveSelector = 'a, button, .service-card, .dm-card, .dm-like, .faq-question, input, select, textarea';
+
+      document.addEventListener('mouseover', e => {
+        if (e.target.closest(interactiveSelector)) {
+          document.body.classList.add('cursor-hover');
+        }
+      }, { passive: true });
+
+      document.addEventListener('mouseout', e => {
+        if (e.target.closest(interactiveSelector)) {
+          document.body.classList.remove('cursor-hover');
+        }
+      }, { passive: true });
+
+      // Dark mode on dark sections (historias, footer)
+      const darkSections = document.querySelectorAll('.historias, .footer');
+      const darkObserver = new IntersectionObserver(entries => {
+        let anyDark = false;
+        entries.forEach(e => { if (e.isIntersecting) anyDark = true; });
+        document.body.classList.toggle('cursor-dark', anyDark);
+      }, { threshold: 0.3 });
+      darkSections.forEach(s => darkObserver.observe(s));
+    })();
+
+    // ── Nav scroll glass effect ──────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 55);
+    }, { passive: true });
+
+    // ── Hamburger & mobile menu ──────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMobileMenu();
+    });
+
+    // ── Floating particles ───────────────────────────────────────
+    (function buildParticles() {
+      const container = document.getElementById('particles');
+      if (!container) return;
+
+      const isMobile = window.innerWidth < 640;
+      const count    = isMobile ? 6 : 12;
+      const colors   = ['#E8C5BF','#C4D0C3','#F0EAE0','#D4C5B0','#C1847A','#FAF7F2'];
+      const sizes    = [4, 5, 7, 9, 11, 14];
+      const els      = [];
+
+      for (let i = 0; i < count; i++) {
+        const el   = document.createElement('div');
+        el.className = 'particle';
+        const sz   = sizes[i % sizes.length];
+        const col  = colors[Math.floor(Math.random() * colors.length)];
+        const x    = 5 + Math.random() * 88;
+        const y    = 5 + Math.random() * 88;
+        const dur  = 7 + Math.random() * 7;
+        const del  = -(Math.random() * 8);
+        const mx   = (Math.random() - 0.5) * 44;
+        const my   = (Math.random() - 0.5) * 52;
+        const op   = 0.28 + Math.random() * 0.32;
+
+        el.style.cssText = `
+          width:${sz}px;height:${sz}px;background:${col};
+          left:${x}%;top:${y}%;opacity:${op};
+          --dur:${dur}s;--del:${del}s;--mx:${mx}px;--my:${my}px;
+        `;
+        container.appendChild(el);
+        els.push({ el, baseX: x, baseY: y, depth: 0.4 + (i % 5) * 0.12 });
+      }
+
+      // Parallax — desktop only
+      if (!isMobile) {
+        const cx = window.innerWidth  / 2;
+        const cy = window.innerHeight / 2;
+        document.addEventListener('mousemove', e => {
+          const dx = (e.clientX - cx) / cx;
+          const dy = (e.clientY - cy) / cy;
+          els.forEach(({ el, depth }) => {
+            el.style.transform = `translate(${dx * 18 * depth}px, ${dy * 18 * depth}px)`;
+          });
+        }, { passive: true });
+      }
+    })();
+
+    // ── Scroll reveal (IntersectionObserver) ────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── DM card like toggle ──────────────────────────────────────
+    function toggleLike(el) {
+      const heart   = el.querySelector('.dm-heart');
+      const countEl = el.querySelector('.dm-count');
+      const liked   = el.dataset.liked === '1';
+
+      // Restart animation
+      heart.classList.remove('animate');
+      void heart.offsetWidth;
+      heart.classList.add('animate');
+
+      function parseCount(s) {
+        return s.includes('K') ? Math.round(parseFloat(s) * 1000) : parseInt(s, 10);
+      }
+      function fmtCount(n) {
+        return n >= 1000 ? (n / 1000).toFixed(1).replace('.0','') + 'K' : String(n);
+      }
+
+      const current = parseCount(countEl.textContent);
+      if (!liked) {
+        el.dataset.liked = '1';
+        heart.style.filter = 'sepia(1) saturate(3) hue-rotate(-20deg)';
+        countEl.textContent = fmtCount(current + 1);
+      } else {
+        el.dataset.liked = '0';
+        heart.style.filter = '';
+        countEl.textContent = fmtCount(current - 1);
+      }
+    }
+
+    // ── Contact form ─────────────────────────────────────────────
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('formBtn');
+      btn.textContent = '✓ Mensaje enviado — nos contactamos pronto';
+      btn.style.background = 'var(--sage)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Enviar mensaje →';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 4000);
+    }
+  </script>
+
+</body>
+</html>
