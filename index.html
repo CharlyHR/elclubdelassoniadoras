@@ -71,9 +71,12 @@
     /* ============================================================
        CUSTOM CURSOR — desktop only
     ============================================================ */
-    @media (pointer: fine) {
+    @media (pointer: fine) and (hover: hover) {
       body { cursor: none; }
       a, button, [onclick], input, select, textarea, label { cursor: none; }
+    }
+    @media (pointer: coarse), (hover: none) {
+      #cursor-ring, #cursor-dot { display: none !important; }
     }
 
     #cursor-ring {
@@ -360,6 +363,20 @@
     }
     .mobile-menu.open .mobile-wa-btn { opacity: 1; transform: translateY(0); }
     .mobile-wa-btn:hover { background: var(--rose-deep); }
+    .mob-close {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.25rem;
+      width: 44px; height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(232,197,191,0.7);
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      transition: color 0.2s ease, background 0.2s ease, transform 0.3s ease;
+    }
+    .mob-close:hover { color: var(--rose-light); background: rgba(255,255,255,0.12); transform: rotate(90deg); }
 
     /* ============================================================
        HERO
@@ -1425,6 +1442,11 @@
 
   <!-- Mobile overlay menu -->
   <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú de navegación">
+    <button class="mob-close" id="mobClose" aria-label="Cerrar menú">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/>
+      </svg>
+    </button>
     <a href="#nosotras" class="mob-link">Nosotros</a>
     <a href="#servicios" class="mob-link">Servicios</a>
     <a href="#historias" class="mob-link">Historias</a>
@@ -2116,8 +2138,8 @@
   <script>
     // ── Custom cursor (desktop / pointer: fine only) ─────────────
     (function initCursor() {
-      // Only on devices with a fine pointer (mouse)
-      if (!window.matchMedia('(pointer: fine)').matches) return;
+      // Only on true mouse devices (fine pointer + hover support)
+      if (!window.matchMedia('(pointer: fine) and (hover: hover)').matches) return;
 
       const ring = document.getElementById('cursor-ring');
       const dot  = document.getElementById('cursor-dot');
@@ -2192,6 +2214,7 @@
     // ── Hamburger & mobile menu ──────────────────────────────────
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
+    const mobClose   = document.getElementById('mobClose');
 
     function closeMobileMenu() {
       hamburger.classList.remove('open');
@@ -2206,6 +2229,8 @@
       hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
+
+    mobClose.addEventListener('click', closeMobileMenu);
 
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMobileMenu);
